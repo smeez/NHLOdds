@@ -3,6 +3,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -10,10 +11,13 @@ import java.util.ArrayList;
 import it.moondroid.coverflow.components.ui.containers.FeatureCoverFlow;
 
 public class Stats extends ActionBarActivity {
-    public String team, games_played, wins, losses, rank, points, streak;
+    public String team, abbreviation, games_played, wins, losses, rank, points, streak;
+    public int logo;
     //public String[] teams = getResources().getStringArray(R.array.teams);
     //public String[] team_abbreviations = getResources().getStringArray(R.array.teams);
     private String games_played_query, wins_query, losses_query, overtime_losses_query, rank_query, points_query, streak_query;
+
+    int logos[] = {R.mipmap.ana, R.mipmap.phx};
 
     private FeatureCoverFlow mCoverFlow;
     private CoverFlowAdapter mAdapter;
@@ -26,12 +30,17 @@ public class Stats extends ActionBarActivity {
 
         Bundle bundle = getIntent().getExtras();
         team = bundle.getString("team");
+        abbreviation = bundle.getString("abbreviation");
+        logo = bundle.getInt("logo");
         games_played = bundle.getString("games_played");
         wins = bundle.getString("wins");
         losses = bundle.getString("losses");
         rank = bundle.getString("rank");
         points = bundle.getString("points");
         streak = bundle.getString("streak");
+
+        final ImageView team_logo = (ImageView) findViewById(R.id.team_logo);
+        team_logo.setImageResource(logos[logo]);
 
         final TextView team_name = (TextView) findViewById(R.id.team_name);
         team_name.setText(team);
@@ -55,10 +64,12 @@ public class Stats extends ActionBarActivity {
         strk.setText(streak);
 
 
-        mData.add(new GameEntity(R.string.team1_name, R.mipmap.ic_launcher, R.string.team2_name, R.mipmap.ic_launcher));
-        mData.add(new GameEntity(R.string.team1_name, R.mipmap.ic_launcher, R.string.team2_name, R.mipmap.ic_launcher));
-        mData.add(new GameEntity(R.string.team1_name, R.mipmap.ic_launcher, R.string.team2_name, R.mipmap.ic_launcher));
-        mData.add(new GameEntity(R.string.team1_name, R.mipmap.ic_launcher, R.string.team2_name, R.mipmap.ic_launcher));
+
+
+        mData.add(new GameEntity(R.string.team1_name, logos[logo], R.string.team2_name, R.mipmap.ic_launcher));
+        mData.add(new GameEntity(R.string.team1_name, logos[logo], R.string.team2_name, R.mipmap.ic_launcher));
+        mData.add(new GameEntity(R.string.team1_name, logos[logo], R.string.team2_name, R.mipmap.ic_launcher));
+        mData.add(new GameEntity(R.string.team1_name, logos[logo], R.string.team2_name, R.mipmap.ic_launcher));
 
         mAdapter = new CoverFlowAdapter(this);
         mAdapter.setData(mData);

@@ -14,10 +14,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TeamSelection extends AppCompatActivity implements Database.AsyncResponse {
-    public String team, abbreviation, logo, games_played, wins, losses, rank, points, streak;
+    public String team, abbreviation, games_played, wins, losses, rank, points, streak;
+    public int logo;
     public List<String> teams, abbreviations;
-
-    int logos[] = {R.mipmap.ANA, R.mipmap.PHX};
 
     private String games_played_query, wins_query, losses_query, overtime_losses_query, rank_query, points_query, streak_query;
 
@@ -55,6 +54,7 @@ public class TeamSelection extends AppCompatActivity implements Database.AsyncRe
                 progress_bar.setVisibility(View.VISIBLE);
                 team = parent.getItemAtPosition(position).toString();
                 abbreviation = abbreviations.get(teams.indexOf(team));
+                logo = teams.indexOf(team);
 
                 games_played = wins = losses = rank = points = streak = "";
                 games_played_query = ";current_standings;games_played;name_abbreviation='" + abbreviation + "'";
@@ -78,6 +78,8 @@ public class TeamSelection extends AppCompatActivity implements Database.AsyncRe
             public void onClick(View v) {
                 Intent stats = new Intent(TeamSelection.this, Stats.class);
                 stats.putExtra("team", team);
+                stats.putExtra("abbreviation", abbreviation);
+                stats.putExtra("logo", logo);
                 stats.putExtra("games_played", games_played);
                 stats.putExtra("wins", wins);
                 stats.putExtra("losses", losses);
