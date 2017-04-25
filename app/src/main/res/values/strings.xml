@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Stanley\'s Stats</string>
+    <string name="team1_name">Ducks</string>
+    <string name="team2_name">Predators</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+</resources>
