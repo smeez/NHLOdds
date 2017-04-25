@@ -2,6 +2,7 @@
 <resources>
     <string-array name="abbreviations">
         <item>ANA</item>
+        <item>PHX</item>
         <item>BOS</item>
         <item>BUF</item>
         <item>CGY</item>
@@ -22,7 +23,6 @@
         <item>NYR</item>
         <item>OTT</item>
         <item>PHI</item>
-        <item>PHX</item>
         <item>PIT</item>
         <item>STL</item>
         <item>SJS</item>

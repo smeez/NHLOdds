@@ -19,16 +19,14 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:paddingTop="10dp"
-            android:paddingRight="20dp"
-            tools:src="@drawable/image_1" />
+            android:paddingRight="20dp" />
 
         <ImageView
             android:id="@+id/image2"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:paddingTop="10dp"
-            android:paddingLeft="20dp"
-            tools:src="@drawable/image_2" />
+            android:paddingLeft="20dp" />
 
     </LinearLayout>
 

@@ -2,6 +2,7 @@
 <resources>
     <string-array name="teams">
         <item>Anaheim Ducks</item>
+        <item>Arizona Coyotes</item>
         <item>Boston Bruins</item>
         <item>Buffalo Sabres</item>
         <item>Calgary Flames</item>
@@ -22,7 +23,6 @@
         <item>New York Rangers</item>
         <item>Ottawa Senators</item>
         <item>Philadelphia Flyers</item>
-        <item>Phoenix Coyotes</item>
         <item>Pittsburgh Penguins</item>
         <item>Saint Louis Blues</item>
         <item>San Jose Sharks</item>
