@@ -51,6 +51,7 @@ public class TeamSelection extends AppCompatActivity implements Database.AsyncRe
         team_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                start_button.setVisibility(View.INVISIBLE);
                 progress_bar.setVisibility(View.VISIBLE);
                 team = parent.getItemAtPosition(position).toString();
                 abbreviation = abbreviations.get(teams.indexOf(team));

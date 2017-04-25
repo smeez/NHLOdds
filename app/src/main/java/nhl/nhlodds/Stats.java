@@ -17,7 +17,9 @@ public class Stats extends ActionBarActivity {
     //public String[] team_abbreviations = getResources().getStringArray(R.array.teams);
     private String games_played_query, wins_query, losses_query, overtime_losses_query, rank_query, points_query, streak_query;
 
-    int logos[] = {R.mipmap.ana, R.mipmap.phx, R.mipmap.bos};
+    int logos[] = { R.mipmap.ana, R.mipmap.phx, R.mipmap.bos, R.mipmap.buf, R.mipmap.car, R.mipmap.cbj, R.mipmap.cgy, R.mipmap.chi, R.mipmap.col, R.mipmap.dal,
+                    R.mipmap.det, R.mipmap.edm, R.mipmap.fla, R.mipmap.lak, R.mipmap.min, R.mipmap.mtl, R.mipmap.njd, R.mipmap.nsh, R.mipmap.nyi, R.mipmap.nyr,
+                    R.mipmap.ott, R.mipmap.phi, R.mipmap.phx, R.mipmap.pit, R.mipmap.sjs, R.mipmap.stl, R.mipmap.tbl, R.mipmap.tor, R.mipmap.van, R.mipmap.wpg, R.mipmap.wsh};
 
     private FeatureCoverFlow mCoverFlow;
     private CoverFlowAdapter mAdapter;
@@ -66,10 +68,10 @@ public class Stats extends ActionBarActivity {
 
 
 
-        mData.add(new GameEntity(abbreviation, logos[logo], R.string.team1_name, R.mipmap.ic_launcher));
-        mData.add(new GameEntity(abbreviation, logos[logo], R.string.team2_name, R.mipmap.ic_launcher));
-        mData.add(new GameEntity(abbreviation, logos[logo], R.string.team3_name, R.mipmap.ic_launcher));
-        mData.add(new GameEntity(abbreviation, logos[logo], R.string.team4_name, R.mipmap.ic_launcher));
+        mData.add(new GameEntity(abbreviation, logos[logo], R.string.team1_name, R.mipmap.buf));
+        mData.add(new GameEntity(abbreviation, logos[logo], R.string.team2_name, R.mipmap.car));
+        mData.add(new GameEntity(abbreviation, logos[logo], R.string.team3_name, R.mipmap.nsh));
+        mData.add(new GameEntity(abbreviation, logos[logo], R.string.team4_name, R.mipmap.phi));
 
         mAdapter = new CoverFlowAdapter(this);
         mAdapter.setData(mData);
