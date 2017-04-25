@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import it.moondroid.coverflow.components.ui.containers.FeatureCoverFlow;
 
 public class Stats extends ActionBarActivity {
+    public Team my_team;
     public String team, abbreviation, games_played, wins, losses, rank, points, streak;
     public int logo;
-    //public String[] teams = getResources().getStringArray(R.array.teams);
-    //public String[] team_abbreviations = getResources().getStringArray(R.array.teams);
+
     private String games_played_query, wins_query, losses_query, overtime_losses_query, rank_query, points_query, streak_query;
 
     int logos[] = { R.mipmap.ana, R.mipmap.phx, R.mipmap.bos, R.mipmap.buf, R.mipmap.car, R.mipmap.cbj, R.mipmap.cgy, R.mipmap.chi, R.mipmap.col, R.mipmap.dal,
@@ -40,9 +40,12 @@ public class Stats extends ActionBarActivity {
         rank = bundle.getString("rank");
         points = bundle.getString("points");
         streak = bundle.getString("streak");
+        my_team = bundle.getParcelable("selected_team");
+
+
 
         final ImageView team_logo = (ImageView) findViewById(R.id.team_logo);
-        team_logo.setImageResource(logos[logo]);
+        team_logo.setImageResource(logos[my_team.get_logo()]);
 
         final TextView team_name = (TextView) findViewById(R.id.team_name);
         team_name.setText(team);
@@ -64,9 +67,6 @@ public class Stats extends ActionBarActivity {
 
         final TextView strk = (TextView) findViewById(R.id.strk);
         strk.setText(streak);
-
-
-
 
         mData.add(new GameEntity(abbreviation, logos[logo], R.string.team1_name, R.mipmap.buf));
         mData.add(new GameEntity(abbreviation, logos[logo], R.string.team2_name, R.mipmap.car));
