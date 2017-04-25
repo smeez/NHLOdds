@@ -1,8 +1,8 @@
 package nhl.nhlodds;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,12 +13,11 @@ import android.widget.Spinner;
 import java.util.Arrays;
 import java.util.List;
 
-public class TeamSelection extends ActionBarActivity implements Database.AsyncResponse {
-    public String team, games_played, wins, losses, rank, points, streak;
-    //public String[] teams = getResources().getStringArray(R.array.teams);
-    //public String[] team_abbreviations = getResources().getStringArray(R.array.teams);
+public class TeamSelection extends AppCompatActivity implements Database.AsyncResponse {
+    public String team, abbreviation, logo, games_played, wins, losses, rank, points, streak;
+    public List<String> teams, abbreviations;
 
-    List<String> teams, abbreviations;
+    int logos[] = {R.mipmap.ANA, R.mipmap.PHX};
 
     private String games_played_query, wins_query, losses_query, overtime_losses_query, rank_query, points_query, streak_query;
 
@@ -55,15 +54,16 @@ public class TeamSelection extends ActionBarActivity implements Database.AsyncRe
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 progress_bar.setVisibility(View.VISIBLE);
                 team = parent.getItemAtPosition(position).toString();
+                abbreviation = abbreviations.get(teams.indexOf(team));
 
                 games_played = wins = losses = rank = points = streak = "";
-                games_played_query = ";current_standings;games_played;name_abbreviation='" + abbreviations.get(teams.indexOf(team)) + "'";
-                wins_query = ";current_standings;wins;name_abbreviation='" + abbreviations.get(teams.indexOf(team)) + "'";
-                losses_query = ";current_standings;losses;name_abbreviation='" + abbreviations.get(teams.indexOf(team)) + "'";
-                overtime_losses_query = ";current_standings;overtime;name_abbreviation='" + abbreviations.get(teams.indexOf(team)) + "'";
-                rank_query = ";current_standings;current_ranking;name_abbreviation='" + abbreviations.get(teams.indexOf(team)) + "'";
-                points_query = ";current_standings;points;name_abbreviation='" + abbreviations.get(teams.indexOf(team)) + "'";
-                streak_query = ";current_standings;streak;name_abbreviation='" + abbreviations.get(teams.indexOf(team)) + "'";
+                games_played_query = ";current_standings;games_played;name_abbreviation='" + abbreviation + "'";
+                wins_query = ";current_standings;wins;name_abbreviation='" + abbreviation + "'";
+                losses_query = ";current_standings;losses;name_abbreviation='" + abbreviation + "'";
+                overtime_losses_query = ";current_standings;overtime;name_abbreviation='" + abbreviation + "'";
+                rank_query = ";current_standings;current_ranking;name_abbreviation='" + abbreviation + "'";
+                points_query = ";current_standings;points;name_abbreviation='" + abbreviation + "'";
+                streak_query = ";current_standings;streak;name_abbreviation='" + abbreviation + "'";
                 ExecuteQueries();
             }
 
