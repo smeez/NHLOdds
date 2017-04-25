@@ -39,10 +39,10 @@ public class TeamSelection extends AppCompatActivity implements Database.AsyncRe
         abbreviations = Arrays.asList(getResources().getStringArray(R.array.abbreviations));
 
         final Button start_button = (Button)findViewById(R.id.start_button);
-        start_button.setVisibility(View.INVISIBLE);
+        start_button.setVisibility(View.GONE);
 
         final ProgressBar progress_bar = (ProgressBar) findViewById(R.id.progress_bar);
-        progress_bar.setVisibility(View.INVISIBLE);
+        progress_bar.setVisibility(View.GONE);
 
         final ArrayAdapter team_adapter = ArrayAdapter.createFromResource(this, R.array.teams, R.layout.team_spinner);
         team_adapter.setDropDownViewResource(R.layout.team_spinner_dropdown);
@@ -51,7 +51,7 @@ public class TeamSelection extends AppCompatActivity implements Database.AsyncRe
         team_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                start_button.setVisibility(View.INVISIBLE);
+                start_button.setVisibility(View.GONE);
                 progress_bar.setVisibility(View.VISIBLE);
                 team = parent.getItemAtPosition(position).toString();
                 abbreviation = abbreviations.get(teams.indexOf(team));
@@ -123,7 +123,7 @@ public class TeamSelection extends AppCompatActivity implements Database.AsyncRe
         }
         else if (streak.equals("")) {
             streak = output;
-            progress_bar.setVisibility(View.INVISIBLE);
+            progress_bar.setVisibility(View.GONE);
             start_button.setVisibility(View.VISIBLE);
         }
     }

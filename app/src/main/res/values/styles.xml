@@ -12,6 +12,9 @@
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="white" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@color/white</item>
+    </style>
 </resources>

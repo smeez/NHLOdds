@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/team_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="72dp"
+        android:layout_height="72dp" />
 
     <TextView
         android:id="@+id/team_name"
@@ -18,14 +18,13 @@
         android:layout_height="wrap_content"
         android:textSize="40dp"
         android:textColor="@color/white"
-        android:paddingTop="29dp" />
+        android:paddingTop="18dp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/blue"
-        android:orientation="horizontal"
-        android:paddingTop="29dp" >
+        android:orientation="horizontal" >
 
         <LinearLayout
             android:layout_width="wrap_content"
