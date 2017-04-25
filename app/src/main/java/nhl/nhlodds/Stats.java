@@ -5,13 +5,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import it.moondroid.coverflow.components.ui.containers.FeatureCoverFlow;
 
 public class Stats extends ActionBarActivity {
-    public Team my_team;
+    public Team selected_team = new Team();
     public String team, abbreviation, games_played, wins, losses, rank, points, streak;
     public int logo;
 
@@ -30,48 +31,36 @@ public class Stats extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stats);
 
-        Bundle bundle = getIntent().getExtras();
-        team = bundle.getString("team");
-        abbreviation = bundle.getString("abbreviation");
-        logo = bundle.getInt("logo");
-        games_played = bundle.getString("games_played");
-        wins = bundle.getString("wins");
-        losses = bundle.getString("losses");
-        rank = bundle.getString("rank");
-        points = bundle.getString("points");
-        streak = bundle.getString("streak");
-        my_team = bundle.getParcelable("selected_team");
-
-
+        selected_team = getIntent().getParcelableExtra("selected_team");
 
         final ImageView team_logo = (ImageView) findViewById(R.id.team_logo);
-        team_logo.setImageResource(logos[my_team.get_logo()]);
+        team_logo.setImageResource(logos[selected_team.get_logo()]);
 
         final TextView team_name = (TextView) findViewById(R.id.team_name);
-        team_name.setText(team);
+        team_name.setText(selected_team.get_name());
 
         final TextView gp = (TextView) findViewById(R.id.gp);
-        gp.setText(games_played);
+        gp.setText(selected_team.get_games_played());
 
         final TextView w = (TextView) findViewById(R.id.w);
-        w.setText(wins);
+        w.setText(selected_team.get_wins());
 
         final TextView l_otl = (TextView) findViewById(R.id.l_otl);
-        l_otl.setText(losses);
+        l_otl.setText(selected_team.get_losses());
 
         final TextView rnk = (TextView) findViewById(R.id.rnk);
-        rnk.setText(rank);
+        rnk.setText(selected_team.get_rank());
 
         final TextView p = (TextView) findViewById(R.id.p);
-        p.setText(points);
+        p.setText(selected_team.get_points());
 
         final TextView strk = (TextView) findViewById(R.id.strk);
-        strk.setText(streak);
+        strk.setText(selected_team.get_streak());
 
-        mData.add(new GameEntity(abbreviation, logos[logo], R.string.team1_name, R.mipmap.buf));
-        mData.add(new GameEntity(abbreviation, logos[logo], R.string.team2_name, R.mipmap.car));
-        mData.add(new GameEntity(abbreviation, logos[logo], R.string.team3_name, R.mipmap.nsh));
-        mData.add(new GameEntity(abbreviation, logos[logo], R.string.team4_name, R.mipmap.phi));
+        mData.add(new GameEntity(selected_team.get_abbreviation(), logos[selected_team.get_logo()], R.string.team1_name, R.mipmap.buf));
+        mData.add(new GameEntity(selected_team.get_abbreviation(), logos[selected_team.get_logo()], R.string.team2_name, R.mipmap.buf));
+        mData.add(new GameEntity(selected_team.get_abbreviation(), logos[selected_team.get_logo()], R.string.team3_name, R.mipmap.buf));
+        mData.add(new GameEntity(selected_team.get_abbreviation(), logos[selected_team.get_logo()], R.string.team4_name, R.mipmap.buf));
 
         mAdapter = new CoverFlowAdapter(this);
         mAdapter.setData(mData);

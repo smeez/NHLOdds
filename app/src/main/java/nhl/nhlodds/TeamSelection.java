@@ -9,14 +9,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class TeamSelection extends AppCompatActivity implements Database.AsyncResponse {
-    public String team, abbreviation, games_played, wins, losses, rank, points, streak;
-    public int logo;
     public List<String> teams, abbreviations;
+    public Team selected_team = new Team();
 
     private String games_played_query, wins_query, losses_query, overtime_losses_query, rank_query, points_query, streak_query;
 
@@ -53,18 +53,19 @@ public class TeamSelection extends AppCompatActivity implements Database.AsyncRe
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 start_button.setVisibility(View.GONE);
                 progress_bar.setVisibility(View.VISIBLE);
-                team = parent.getItemAtPosition(position).toString();
-                abbreviation = abbreviations.get(teams.indexOf(team));
-                logo = teams.indexOf(team);
 
-                games_played = wins = losses = rank = points = streak = "";
-                games_played_query = ";current_standings;games_played;name_abbreviation='" + abbreviation + "'";
-                wins_query = ";current_standings;wins;name_abbreviation='" + abbreviation + "'";
-                losses_query = ";current_standings;losses;name_abbreviation='" + abbreviation + "'";
-                overtime_losses_query = ";current_standings;overtime;name_abbreviation='" + abbreviation + "'";
-                rank_query = ";current_standings;current_ranking;name_abbreviation='" + abbreviation + "'";
-                points_query = ";current_standings;points;name_abbreviation='" + abbreviation + "'";
-                streak_query = ";current_standings;streak;name_abbreviation='" + abbreviation + "'";
+                selected_team.clear();
+                selected_team.set_name(parent.getItemAtPosition(position).toString());
+                selected_team.set_abbreviation(abbreviations.get(teams.indexOf(selected_team.get_name())));
+                selected_team.set_logo(teams.indexOf(selected_team.get_name()));
+
+                games_played_query = ";current_standings;games_played;name_abbreviation='" + selected_team.get_abbreviation() + "'";
+                wins_query = ";current_standings;wins;name_abbreviation='" + selected_team.get_abbreviation() + "'";
+                losses_query = ";current_standings;losses;name_abbreviation='" + selected_team.get_abbreviation() + "'";
+                overtime_losses_query = ";current_standings;overtime;name_abbreviation='" + selected_team.get_abbreviation() + "'";
+                rank_query = ";current_standings;current_ranking;name_abbreviation='" + selected_team.get_abbreviation() + "'";
+                points_query = ";current_standings;points;name_abbreviation='" + selected_team.get_abbreviation() + "'";
+                streak_query = ";current_standings;streak;name_abbreviation='" + selected_team.get_abbreviation() + "'";
                 ExecuteQueries();
             }
 
@@ -78,15 +79,7 @@ public class TeamSelection extends AppCompatActivity implements Database.AsyncRe
             @Override
             public void onClick(View v) {
                 Intent stats = new Intent(TeamSelection.this, Stats.class);
-                stats.putExtra("team", team);
-                stats.putExtra("abbreviation", abbreviation);
-                stats.putExtra("logo", logo);
-                stats.putExtra("games_played", games_played);
-                stats.putExtra("wins", wins);
-                stats.putExtra("losses", losses);
-                stats.putExtra("rank", rank);
-                stats.putExtra("points", points);
-                stats.putExtra("streak", streak);
+                stats.putExtra("selected_team", selected_team);
 
                 TeamSelection.this.startActivity(stats);
             }
@@ -103,26 +96,26 @@ public class TeamSelection extends AppCompatActivity implements Database.AsyncRe
         output = output.replace(",","");
         output = output.replace("'","");
 
-        if (games_played.equals("")) {
-            games_played = output;
+        if (selected_team.get_games_played().equals("")) {
+            selected_team.set_games_played(output);
         }
-        else if (wins.equals("")) {
-            wins = output;
+        else if (selected_team.get_wins().equals("")) {
+            selected_team.set_wins(output);
         }
-        else if (losses.equals("")) {
-            losses = output;
+        else if (selected_team.get_losses().equals("")) {
+            selected_team.set_losses(output);
         }
-        else if (losses.length() < 4) {
-            losses = losses + "-" + output;
+        else if (selected_team.get_losses().length() < 4) {
+            selected_team.set_losses(selected_team.get_losses() + "-" + output);
         }
-        else if (rank.equals("")) {
-            rank = output;
+        else if (selected_team.get_rank().equals("")) {
+            selected_team.set_rank(output);
         }
-        else if (points.equals("")) {
-            points = output;
+        else if (selected_team.get_points().equals("")) {
+            selected_team.set_points(output);
         }
-        else if (streak.equals("")) {
-            streak = output;
+        else if (selected_team.get_streak().equals("")) {
+            selected_team.set_streak(output);
             progress_bar.setVisibility(View.GONE);
             start_button.setVisibility(View.VISIBLE);
         }
