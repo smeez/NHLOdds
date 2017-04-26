@@ -18,7 +18,7 @@ public class TeamSelection extends AppCompatActivity implements Database.AsyncRe
     public List<String> teams, abbreviations;
     public Team selected_team = new Team();
 
-    private String games_played_query, wins_query, losses_query, overtime_losses_query, rank_query, points_query, streak_query;
+    private String games_played_query, wins_query, losses_query, overtime_losses_query, rank_query, points_query, streak_query, elo_query, probability_query;
 
     public void ExecuteQueries() {
         new Database(TeamSelection.this, games_played_query).execute();
@@ -28,6 +28,8 @@ public class TeamSelection extends AppCompatActivity implements Database.AsyncRe
         new Database(TeamSelection.this, rank_query).execute();
         new Database(TeamSelection.this, points_query).execute();
         new Database(TeamSelection.this, streak_query).execute();
+        new Database(TeamSelection.this, elo_query).execute();
+        new Database(TeamSelection.this, probability_query).execute();
     }
 
     @Override
@@ -66,6 +68,8 @@ public class TeamSelection extends AppCompatActivity implements Database.AsyncRe
                 rank_query = ";current_standings;current_ranking;name_abbreviation='" + selected_team.get_abbreviation() + "'";
                 points_query = ";current_standings;points;name_abbreviation='" + selected_team.get_abbreviation() + "'";
                 streak_query = ";current_standings;streak;name_abbreviation='" + selected_team.get_abbreviation() + "'";
+                elo_query = ";current_standings;elo;name_abbreviation='" + selected_team.get_abbreviation() + "'";
+                probability_query = ";current_standings;playoff_probability;name_abbreviation='" + selected_team.get_abbreviation() + "'";
                 ExecuteQueries();
             }
 
@@ -116,6 +120,12 @@ public class TeamSelection extends AppCompatActivity implements Database.AsyncRe
         }
         else if (selected_team.get_streak().equals("")) {
             selected_team.set_streak(output);
+        }
+        else if (selected_team.get_elo().equals("")) {
+            selected_team.set_elo(output);
+        }
+        else if (selected_team.get_probability().equals("")) {
+            selected_team.set_probability(output);
             progress_bar.setVisibility(View.GONE);
             start_button.setVisibility(View.VISIBLE);
         }

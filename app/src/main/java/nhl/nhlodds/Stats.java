@@ -57,6 +57,12 @@ public class Stats extends ActionBarActivity {
         final TextView strk = (TextView) findViewById(R.id.strk);
         strk.setText(selected_team.get_streak());
 
+        final TextView elo = (TextView) findViewById(R.id.elo);
+        elo.setText(selected_team.get_elo());
+
+        final TextView prob = (TextView) findViewById(R.id.prob);
+        prob.setText(selected_team.get_probability());
+
         mData.add(new GameEntity(selected_team.get_abbreviation(), logos[selected_team.get_logo()], R.string.team1_name, R.mipmap.buf));
         mData.add(new GameEntity(selected_team.get_abbreviation(), logos[selected_team.get_logo()], R.string.team2_name, R.mipmap.buf));
         mData.add(new GameEntity(selected_team.get_abbreviation(), logos[selected_team.get_logo()], R.string.team3_name, R.mipmap.buf));
