@@ -7,10 +7,18 @@
     android:background="@color/blue"
     android:gravity="center_horizontal" >
 
+    <ImageButton android:id="@+id/help_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="365dp"
+        android:background="@color/blue"
+        android:src="@mipmap/help" />
+
     <ImageView
         android:id="@+id/team_logo"
         android:layout_width="115dp"
         android:layout_height="115dp"
+        android:layout_marginTop="-55dp"
         android:layout_marginBottom="-20dp"/>
 
     <TextView
@@ -20,6 +28,17 @@
         android:textSize="36dp"
         android:textColor="@color/white"
         android:layout_marginBottom="15dp" />
+    
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/help_text"
+        android:textSize="18dp"
+        android:text="GP: Games Played\nW: Wins\nL: Losses\nOTL: Overtime Losses\nR: Divisional Rank\nP: Points\nSTRK: Win/Loss Streak\nELO: Competitive Rating\nPROB: Playoff Probability"
+        android:textColor="@color/black"
+        android:layout_width="330dp"
+        android:layout_height="214.5dp"
+        android:background="@color/white"
+        android:gravity="center"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -188,7 +207,8 @@
         android:background="@color/blue"
         android:orientation="horizontal"
         android:layout_marginBottom="12dp"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:paddingLeft="55dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -243,8 +263,8 @@
         android:id="@+id/coverflow"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        coverflow:coverHeight="160dp"
-        coverflow:coverWidth="160dp"
+        coverflow:coverHeight="180dp"
+        coverflow:coverWidth="180dp"
         coverflow:maxScaleFactor="1.5"
         coverflow:reflectionGap="0px"
         coverflow:rotationThreshold="0.5"

@@ -48,18 +48,16 @@ public class CoverFlowAdapter extends BaseAdapter {
             rowView = inflater.inflate(R.layout.item_coverflow, null);
 
             ViewHolder viewHolder = new ViewHolder();
-            viewHolder.text1 = (TextView) rowView.findViewById(R.id.text1);
-			viewHolder.text2 = (TextView) rowView.findViewById(R.id.text2);
+
             viewHolder.image1 = (ImageView) rowView.findViewById(R.id.image);
-			viewHolder.image2 = (ImageView) rowView.findViewById(R.id.image2);
+
 			rowView.setTag(viewHolder);
         }
 
         ViewHolder holder = (ViewHolder) rowView.getTag();
-		holder.text1.setText(mData.get(position).team1_name);
+
 		holder.image1.setImageResource(mData.get(position).team1_logo);
-		holder.text2.setText(mData.get(position).team2_name);
-		holder.image2.setImageResource(mData.get(position).team2_logo);
+
 
 		return rowView;
 	}
